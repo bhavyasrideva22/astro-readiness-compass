@@ -2,41 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Aerospace Engineering Assessment Platform Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Aerospace color palette */
+    --background: 220 27% 4%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 23% 6%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 23% 6%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
+    /* Primary: Deep Space Blue */
+    --primary: 220 91% 58%;
     --primary-foreground: 210 40% 98%;
+    --primary-dark: 220 91% 35%;
+    --primary-light: 220 91% 75%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary: Aerospace Teal */
+    --secondary: 195 100% 39%;
+    --secondary-foreground: 210 40% 98%;
+    --secondary-dark: 195 100% 25%;
+    --secondary-light: 195 100% 55%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Accent: Metallic Silver */
+    --accent: 215 25% 27%;
+    --accent-foreground: 210 40% 98%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 215 25% 16%;
+    --muted-foreground: 215 20.2% 65.1%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 215 25% 16%;
+    --input: 215 25% 16%;
+    --ring: 220 91% 58%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Aerospace gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-dark)));
+    --gradient-space: linear-gradient(180deg, hsl(220 27% 4%), hsl(220 45% 8%));
+    --gradient-card: linear-gradient(145deg, hsl(220 23% 6%), hsl(215 25% 12%));
+    
+    /* Shadows and effects */
+    --shadow-primary: 0 0 30px hsl(var(--primary) / 0.3);
+    --shadow-secondary: 0 0 30px hsl(var(--secondary) / 0.3);
+    --shadow-glow: 0 0 50px hsl(var(--primary) / 0.2);
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +123,71 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-space);
+    min-height: 100vh;
+  }
+
+  /* Custom animations for aerospace theme */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: var(--shadow-primary); }
+    50% { box-shadow: var(--shadow-glow); }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  /* Aerospace-themed component styles */
+  .aerospace-card {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    border: 1px solid hsl(var(--border));
+    transition: var(--transition-smooth);
+  }
+
+  .aerospace-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-primary);
+  }
+
+  .aerospace-button {
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+    transition: var(--transition-smooth);
+  }
+
+  .aerospace-button:hover {
+    background: var(--gradient-secondary);
+    box-shadow: var(--shadow-secondary);
+    transform: translateY(-1px);
+  }
+
+  .aerospace-progress {
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-primary);
   }
 }
